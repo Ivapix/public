@@ -6,6 +6,14 @@
 class Ivapix_Encrypt {
 
 	/**
+	 * Encryption instance
+	 * 
+	 * @since 1.0.0
+	 * @var object Options instance.
+	 */
+	private static $instance = null;
+
+	/**
 	 * Key to use for encryption.
 	 *
 	 * @since 1.0.0
@@ -119,5 +127,20 @@ class Ivapix_Encrypt {
 
 		// If this is reached, you're either not on a live site or have a serious security issue.
 		return 'this-is-a-fallback-salt-but-not-secure';
+	}
+
+	/**
+	 * Gets the instance of THIS (Encrypt) class, 
+	 *
+	 * @since 1.0.0
+	 *
+	 * @return object Instance of this class.
+	 */
+	public static function get_instance() {
+		if ( null == self::$instance ) {
+			self::$instance = new Ivapix_Encrypt();
+		}
+
+		return self::$instance;
 	}
 }

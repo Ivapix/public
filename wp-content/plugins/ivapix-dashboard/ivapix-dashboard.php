@@ -16,26 +16,30 @@ if(!defined('ABSPATH')) {
     exit();
 }
 
-if(!class_exists('Ivapix_Admin_Settings'))
-	require_once( plugin_dir_path( __FILE__ ) . 'admin/class-ivapix_admin_settings.php' );
-
-if(!class_exists('Ivapix_Register_Domains'))
+if( !class_exists( 'Ivapix_Register_Domains' ) )
 	require_once( plugin_dir_path( __FILE__ ) . 'includes/class-ivapix-register_domains.php' );
 
-if(!class_exists('Ivapix_Dashboard'))
+if( !class_exists( 'Ivapix_Dashboard' ) )
 	require_once( plugin_dir_path( __FILE__ ) . 'includes/class-ivapix_dashboard.php' );
 
-if(!class_exists('Ivapix_API'))
+if( !class_exists( 'Ivapix_API' ) )
 	require_once( plugin_dir_path( __FILE__ ) . 'includes/class-ivapix_api.php' );
+
+if( !class_exists( 'Ivapix_Encrypt' ) )
+	require_once( plugin_dir_path( __FILE__ ) . 'admin/class-ivapix_encrypt.php' );
 
 
 /**
  * 
  * Initialize Ivapix Admin Settings page
  */
-$ivapixSettings = new Ivapix_Admin_Settings();
-$ivapixSettings->init();
+if ( is_admin() ) {
+	if( ! class_exists( 'Ivapix_Admin_Settings' ) )
+		require_once( plugin_dir_path( __FILE__ ) . 'admin/class-ivapix_admin_settings.php' );
 
+	$ivapixSettings = new Ivapix_Admin_Settings();
+	$ivapixSettings->init();
+}
 
 /**
  * Initialize domain registration
