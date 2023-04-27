@@ -96,7 +96,7 @@ defined( 'ABSPATH' ) || exit;
 
                         <td class="product-quantity" data-title="<?php esc_attr_e( 'Quantity'); ?>">
                             <?php
-                                if ( $_product->is_sold_individually() ) {
+                                if ( $_product->is_sold_individually() || in_array(68, $_product->category_ids)) {
                                     $product_quantity = sprintf( '1 <input type="hidden" name="cart[%s][qty]" value="1" />', $cart_item_key );
                                 } else {
                                     $product_quantity = woocommerce_quantity_input( array(

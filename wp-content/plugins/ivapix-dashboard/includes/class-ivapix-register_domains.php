@@ -109,7 +109,7 @@ class Ivapix_Register_Domains {
     */
     public function display_domain_forms( $checkout ) {
         $fields = $this->domain_form_fields();
-    
+        
         if ( ! empty( $fields ) ):
             ?>
             <div class="ivapix-domain-registrants">
@@ -191,6 +191,9 @@ class Ivapix_Register_Domains {
                 endforeach;
 
                 //*************//
+                if(isset($cart_item['auth_code'])) {
+                    add_post_meta( $post_ID, 'auth_code', $cart_item['auth_code'], true);         
+                }
 
                 add_post_meta( $post_ID, 'domen', $cart_item['wp24_domain'], true);         
                 add_post_meta( $post_ID, 'datum_registracije', date('d.M.Y'));        
@@ -268,6 +271,10 @@ class Ivapix_Register_Domains {
                     endforeach;
 
                     //*************//
+
+                    if(isset($cart_item['auth_code'])) {
+                        add_post_meta( $post_ID, 'auth_code', $cart_item['auth_code'], true);         
+                    }
 
                     add_post_meta( $post_ID, 'domen', $cart_item['wp24_domain'], true);         
                     add_post_meta( $post_ID, 'datum_registracije', date('d.M.Y'));        
